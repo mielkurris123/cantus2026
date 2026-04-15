@@ -14,7 +14,7 @@
 //    bestaande implementatie bewerken > versie: Nieuwe versie > Implementeren.
 // ========================================================================
 
-const SHEET_ID = 'VERVANG_DOOR_JE_SHEET_ID';
+const SHEET_ID = '1IanuBu3atzWAx4BcaDjqwJW2qjWs6ujRDjlNT97iUC0';
 const SHEET_NAME = 'Inschrijvingen';
 const MAX_PLACES = 35;
 
