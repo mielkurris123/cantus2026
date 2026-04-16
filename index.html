@@ -119,6 +119,10 @@
       <p>Snacks tijdens de pauze: chips en pizza uit de oven.</p>
     </div>
     <div class="card">
+      <h3>Bierkoning &amp; Bierkoningin</h3>
+      <p>Tijdens de cantus wordt de <strong>bierkoning</strong> en de <strong>bierkoningin</strong> van de avond verkozen. Wie durft de kroon te claimen?</p>
+    </div>
+    <div class="card">
       <h3>Na de laatste tempus</h3>
       <p>Kaarsen aan, stemmen laag &mdash; en voor wie blijft: tent op het terrein, ontbijt 's ochtends bij de bakker.</p>
     </div>
@@ -148,6 +152,16 @@
 
       <label class="check"><input type="checkbox" id="gedoopt" name="gedoopt">
         <span>Ik ben gedoopt (student of oud-student van een studentenvereniging)</span></label>
+
+      <div id="praesidiumBlock" style="display:none;margin-left:1.5rem;padding-left:1rem;border-left:2px solid rgba(212,162,76,.3)">
+        <label class="check"><input type="checkbox" id="praesidium" name="praesidium">
+          <span>Ik heb in een praesidium gezeten</span></label>
+
+        <div id="praesidiumFunctieWrap" style="display:none">
+          <label for="praesidiumFunctie">Welke functie(s)?</label>
+          <input type="text" id="praesidiumFunctie" name="praesidiumFunctie" placeholder="bv. praeses, cantor, schachtentemmer…">
+        </div>
+      </div>
 
       <label class="check"><input type="checkbox" id="akkoord" name="akkoord" required>
         <span>Ik ga akkoord met het verloop en de gebruiken van de cantus (verplicht) *</span></label>
@@ -301,6 +315,32 @@ document.getElementById('rereadNoBtn').addEventListener('click', () => {
   submitRegistration();
 });
 
+const gedooptEl = document.getElementById('gedoopt');
+const praesidiumBlock = document.getElementById('praesidiumBlock');
+const praesidiumEl = document.getElementById('praesidium');
+const praesidiumFunctieWrap = document.getElementById('praesidiumFunctieWrap');
+const praesidiumFunctieEl = document.getElementById('praesidiumFunctie');
+
+gedooptEl.addEventListener('change', () => {
+  if (gedooptEl.checked) {
+    praesidiumBlock.style.display = 'block';
+  } else {
+    praesidiumBlock.style.display = 'none';
+    praesidiumEl.checked = false;
+    praesidiumFunctieWrap.style.display = 'none';
+    praesidiumFunctieEl.value = '';
+  }
+});
+
+praesidiumEl.addEventListener('change', () => {
+  if (praesidiumEl.checked) {
+    praesidiumFunctieWrap.style.display = 'block';
+  } else {
+    praesidiumFunctieWrap.style.display = 'none';
+    praesidiumFunctieEl.value = '';
+  }
+});
+
 document.getElementById('form').addEventListener('submit', (e) => {
   e.preventDefault();
   const status = document.getElementById('status');
@@ -337,6 +377,8 @@ async function submitRegistration() {
     name: document.getElementById('name').value,
     email: document.getElementById('email').value,
     gedoopt: document.getElementById('gedoopt').checked,
+    praesidium: document.getElementById('praesidium').checked,
+    praesidiumFunctie: document.getElementById('praesidiumFunctie').value,
     auto: document.getElementById('auto').checked,
     blijfSlapen: document.getElementById('blijfSlapen').checked,
     opmerking: document.getElementById('opmerking').value,

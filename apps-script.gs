@@ -23,8 +23,8 @@ function getSheet_() {
   let sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) {
     sh = ss.insertSheet(SHEET_NAME);
-    sh.appendRow(['Tijdstip', 'Naam', 'E-mail', 'Gedoopt', 'Auto', 'Blijft slapen', 'Opmerking']);
-    sh.getRange(1, 1, 1, 7).setFontWeight('bold');
+    sh.appendRow(['Tijdstip', 'Naam', 'E-mail', 'Gedoopt', 'Auto', 'Blijft slapen', 'Opmerking', 'In praesidium gezeten', 'Praesidiumfunctie']);
+    sh.getRange(1, 1, 1, 9).setFontWeight('bold');
   }
   return sh;
 }
@@ -75,7 +75,9 @@ function doPost(e) {
       data.gedoopt ? 'ja' : 'nee',
       data.auto ? 'ja' : 'nee',
       data.blijfSlapen ? 'ja' : 'nee',
-      (data.opmerking || '').toString().trim()
+      (data.opmerking || '').toString().trim(),
+      data.gedoopt && data.praesidium ? 'ja' : 'nee',
+      data.gedoopt && data.praesidium ? (data.praesidiumFunctie || '').toString().trim() : ''
     ]);
 
     return json_({ ok: true });
