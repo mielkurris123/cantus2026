@@ -48,10 +48,6 @@ function doPost(e) {
       return json_({ ok: true }); // stil "geslaagd" antwoord voor de bot
     }
 
-    if (!verifyTurnstile_(data.turnstileToken)) {
-      return json_({ ok: false, error: 'Bot-check mislukt. Herlaad de pagina en probeer opnieuw.' });
-    }
-
     if (!name || !email) {
       return json_({ ok: false, error: 'Naam en e-mail zijn verplicht.' });
     }
@@ -83,26 +79,6 @@ function doPost(e) {
     return json_({ ok: true });
   } catch (err) {
     return json_({ ok: false, error: 'Serverfout: ' + err.message });
-  }
-}
-
-function verifyTurnstile_(token) {
-  if (!token) return false;
-  const secret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET');
-  if (!secret) {
-    // Geen secret geconfigureerd — blokkeer alles zodat je het niet vergeet te zetten.
-    return false;
-  }
-  try {
-    const r = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'post',
-      payload: { secret: secret, response: token },
-      muteHttpExceptions: true
-    });
-    const res = JSON.parse(r.getContentText());
-    return res.success === true;
-  } catch (err) {
-    return false;
   }
 }
 
