@@ -1,6 +1,6 @@
-# Cantus Afsnee 2026
+# Cantus 2026
 
-Uitnodigingssite + inschrijfformulier voor de cantus van **4 juli 2026** in Afsnee.
+Uitnodigingssite + inschrijfformulier voor de cantus van **10 oktober 2026**. Locatie: Afsnee, onder voorbehoud — als de huur van het terrein begin oktober stopt, wijken we uit naar De Salamander (Overpoort, Gent).
 
 **Live:** https://mieline.be/cantus2026/
 
